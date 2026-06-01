@@ -428,24 +428,43 @@
     /* ===========================
        HOW IT WORKS
        =========================== */
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; position: relative; }
-    .steps::before {
-      content: ''; position: absolute; top: 28px;
-      left: calc(16.67% + 28px); right: calc(16.67% + 28px);
-      height: 2px;
-      background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-green));
-      opacity: .18;
+    .steps-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3.5rem; align-items: center;
     }
-    .step { text-align: center; }
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .step {
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      text-align: left; position: relative; padding-bottom: 2rem;
+    }
+    .step:last-child { padding-bottom: 0; }
+    .step::after {
+      content: ''; position: absolute;
+      left: 27px; top: 56px;
+      width: 2px; height: calc(100% - 56px);
+      background: linear-gradient(180deg, var(--color-brand-blue), var(--color-brand-green));
+      opacity: .2;
+    }
+    .step:last-child::after { display: none; }
     .step-num {
-      width: 56px; height: 56px;
+      width: 56px; height: 56px; flex-shrink: 0;
       background: var(--color-brand-blue); color: #fff;
       border-radius: 50%; display: flex; align-items: center;
       justify-content: center; font-size: 1.25rem; font-weight: 800;
-      margin: 0 auto 1.25rem; position: relative; z-index: 1;
+      position: relative; z-index: 1;
     }
-    .step-title { font-size: 1rem; font-weight: 700; color: var(--color-brand-blue); margin-bottom: .5rem; }
-    .step-desc  { font-size: .88rem; color: var(--color-text-muted); }
+    .step-body { padding-top: .75rem; }
+    .step-title { font-size: 1rem; font-weight: 700; color: var(--color-brand-blue); margin-bottom: .4rem; }
+    .step-desc  { font-size: .88rem; color: var(--color-text-muted); line-height: 1.6; }
+    .steps-photo {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow-strong);
+      height: 100%; min-height: 340px;
+    }
+    .steps-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
 
     /* ===========================
        COVERAGE
@@ -610,6 +629,8 @@
       .emergency-bar-inner { gap: .75rem; }
       .emergency-bar-phone { font-size: .95rem; }
       .quick-services-inner { justify-content: flex-start; }
+      .steps-layout { grid-template-columns: 1fr; }
+      .steps-photo  { min-height: 240px; }
       .section       { padding: 3.5rem 0; }
       .nav-links     { display: none; }
       .menu-toggle   { display: block; }
@@ -960,29 +981,43 @@
      ============================================================ -->
 <section class="section section-alt" id="como-funciona" aria-labelledby="como-funciona-title">
   <div class="container">
-    <div class="section-header centered">
+    <div class="section-header">
       <span class="section-label">Simples assim</span>
       <h2 class="section-title" id="como-funciona-title">Do contato à entrega<br>em 3 passos</h2>
       <p class="section-desc">Da solicitação à execução, tudo é rápido, transparente e sem burocracia.</p>
     </div>
-    <div class="steps" role="list">
+    <div class="steps-layout">
 
-      <div class="step" role="listitem">
-        <div class="step-num" aria-label="Passo 1">1</div>
-        <h3 class="step-title">Fale pelo WhatsApp</h3>
-        <p class="step-desc">Descreva o serviço que precisa e onde está. Respondemos rapidamente e sem burocracia, qualquer hora do dia.</p>
+      <div class="steps" role="list">
+
+        <div class="step" role="listitem">
+          <div class="step-num" aria-label="Passo 1">1</div>
+          <div class="step-body">
+            <h3 class="step-title">Fale pelo WhatsApp</h3>
+            <p class="step-desc">Descreva o serviço que precisa e onde está. Respondemos rapidamente e sem burocracia, qualquer hora do dia.</p>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step-num" aria-label="Passo 2">2</div>
+          <div class="step-body">
+            <h3 class="step-title">Receba o orçamento</h3>
+            <p class="step-desc">Passamos o valor antes de qualquer deslocamento. Sem surpresas no final. Você aprova e confirmamos o serviço.</p>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step-num" aria-label="Passo 3">3</div>
+          <div class="step-body">
+            <h3 class="step-title">Equipe vai até você</h3>
+            <p class="step-desc">Nossa equipe chega com o equipamento certo para o serviço. Rápido, seguro e com a qualidade que você merece.</p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="step" role="listitem">
-        <div class="step-num" aria-label="Passo 2">2</div>
-        <h3 class="step-title">Receba o orçamento</h3>
-        <p class="step-desc">Passamos o valor antes de qualquer deslocamento. Sem surpresas no final. Você aprova e confirmamos o serviço.</p>
-      </div>
-
-      <div class="step" role="listitem">
-        <div class="step-num" aria-label="Passo 3">3</div>
-        <h3 class="step-title">Equipe vai até você</h3>
-        <p class="step-desc">Nossa equipe chega com o equipamento certo para o serviço. Rápido, seguro e com a qualidade que você merece.</p>
+      <div class="steps-photo">
+        <img src="foto guicho.png" alt="Guincho CMA em atendimento em São Paulo" loading="lazy">
       </div>
 
     </div>
