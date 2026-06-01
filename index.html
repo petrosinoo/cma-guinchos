@@ -247,6 +247,8 @@
       text-decoration: none;
     }
     .qs-pill:hover { background: var(--color-brand-blue); color: #fff; }
+    .qs-pill[aria-hidden="true"],
+    .trust-item[aria-hidden="true"] { display: none; }
 
     /* Hero services list (card) */
     .hero-services-list {
@@ -643,6 +645,8 @@
       .steps-photo  { min-height: 240px; }
 
       /* Ticker: quick services (rápido) */
+      .qs-pill[aria-hidden="true"]   { display: inline-flex; }
+      .trust-item[aria-hidden="true"] { display: flex; }
       .quick-services { padding: .75rem 0; }
       .quick-services-inner {
         justify-content: flex-start;
