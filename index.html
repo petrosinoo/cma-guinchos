@@ -168,6 +168,86 @@
       50%      { box-shadow: 0 4px 36px rgba(255,69,0,.65); }
     }
 
+    .btn-call {
+      background: var(--color-brand-blue); color: #fff;
+      box-shadow: 0 4px 16px rgba(10,79,177,.3);
+    }
+    .btn-call:hover { background: #083e8e; box-shadow: 0 6px 24px rgba(10,79,177,.4); }
+
+    /* ===========================
+       EMERGENCY BAR
+       =========================== */
+    .emergency-bar {
+      background: var(--color-emergency-orange);
+      padding: .625rem 0;
+    }
+    .emergency-bar-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.25rem; flex-wrap: wrap;
+    }
+    .emergency-bar-label {
+      color: rgba(255,255,255,.92); font-size: .85rem; font-weight: 600;
+    }
+    .emergency-bar-sep { color: rgba(255,255,255,.4); font-size: .75rem; }
+    .emergency-bar-phone {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: #fff; font-size: 1.05rem; font-weight: 800;
+      letter-spacing: .02em; text-decoration: none;
+      transition: opacity var(--t);
+    }
+    .emergency-bar-phone:hover { opacity: .85; text-decoration: underline; }
+    .emergency-bar-wa {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: #fff; color: var(--color-emergency-orange);
+      padding: .35rem .9rem; border-radius: var(--radius-button);
+      font-size: .82rem; font-weight: 700;
+      transition: opacity var(--t);
+    }
+    .emergency-bar-wa:hover { opacity: .9; }
+
+    /* ===========================
+       QUICK SERVICES STRIP
+       =========================== */
+    .quick-services {
+      background: var(--color-bg-white);
+      border-bottom: 1px solid rgba(10,79,177,.07);
+      padding: .75rem 0; overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .quick-services::-webkit-scrollbar { display: none; }
+    .quick-services-inner {
+      display: flex; align-items: center; gap: .5rem;
+      white-space: nowrap; padding: 0 var(--px);
+      justify-content: center;
+      min-width: max-content; margin: 0 auto;
+    }
+    .qs-label {
+      font-size: .72rem; font-weight: 700;
+      color: var(--color-text-muted); text-transform: uppercase;
+      letter-spacing: .08em; margin-right: .25rem; flex-shrink: 0;
+    }
+    .qs-pill {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: rgba(10,79,177,.06); color: var(--color-brand-blue);
+      padding: .3rem .75rem; border-radius: 100px;
+      font-size: .8rem; font-weight: 600; flex-shrink: 0;
+      transition: background var(--t), color var(--t);
+      text-decoration: none;
+    }
+    .qs-pill:hover { background: var(--color-brand-blue); color: #fff; }
+
+    /* Hero services list (card) */
+    .hero-services-list {
+      display: flex; flex-direction: column; gap: .55rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-services-list li {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .875rem; color: rgba(255,255,255,.85);
+    }
+    .hero-services-list li svg { color: var(--color-brand-green); flex-shrink: 0; }
+
     /* ===========================
        HEADER
        =========================== */
@@ -525,6 +605,11 @@
     }
 
     @media (max-width: 768px) {
+      .emergency-bar-label { display: none; }
+      .emergency-bar-sep   { display: none; }
+      .emergency-bar-inner { gap: .75rem; }
+      .emergency-bar-phone { font-size: .95rem; }
+      .quick-services-inner { justify-content: flex-start; }
       .section       { padding: 3.5rem 0; }
       .nav-links     { display: none; }
       .menu-toggle   { display: block; }
@@ -555,6 +640,27 @@
   </style>
 </head>
 <body>
+
+<!-- ============================================================
+     EMERGENCY BAR
+     ============================================================ -->
+<div class="emergency-bar" role="complementary" aria-label="Contato de emergência">
+  <div class="container">
+    <div class="emergency-bar-inner">
+      <span class="emergency-bar-label">Precisa de guincho agora?</span>
+      <span class="emergency-bar-sep" aria-hidden="true">·</span>
+      <a href="tel:+5511994631249" class="emergency-bar-phone" aria-label="Ligar para CMA Guinchos">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (11) 99463-1249
+      </a>
+      <span class="emergency-bar-sep" aria-hidden="true">·</span>
+      <a href="https://wa.me/5511994631249?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20agora." class="emergency-bar-wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp CMA Guinchos">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ============================================================
      HEADER
@@ -644,27 +750,30 @@
           Atendemos toda a capital com equipe especializada e frota moderna.
         </p>
         <div class="hero-actions">
+          <a href="tel:+5511994631249" class="btn btn-call btn-lg" aria-label="Ligar para CMA Guinchos">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (11) 99463-1249
+          </a>
           <a href="https://wa.me/5511994631249?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20agora."
              class="btn btn-emergency btn-lg"
              target="_blank" rel="noopener noreferrer"
              aria-label="Chamar guincho pelo WhatsApp agora">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Solicitar Agora pelo WhatsApp
+            WhatsApp
           </a>
-          <a href="#servicos" class="btn btn-ghost">Ver Serviços</a>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            Máquinas até 2.000kg
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zona Leste, Sul, Norte, Oeste e Grande SP
           </div>
           <div class="hero-trust-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            Equipe especializada
+            Pix, cartão e dinheiro
           </div>
           <div class="hero-trust-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            Toda a capital · SP
+            Preço fechado antes de sair
           </div>
         </div>
       </div>
@@ -672,31 +781,35 @@
       <!-- Card visual -->
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-card-wrap">
-          <div class="hero-card-float-badge">🟠 Urgente</div>
+          <div class="hero-card-float-badge">🟠 Atendimento rápido</div>
           <div class="hero-card">
-            <p class="hero-card-label">Nossa operação em números</p>
-            <div class="hero-stats">
-              <div class="hero-stat">
-                <div class="hero-stat-val">+5k</div>
-                <div class="hero-stat-lbl">Atendimentos</div>
-              </div>
-              <div class="hero-stat">
-                <div class="hero-stat-val">Rápido</div>
-                <div class="hero-stat-lbl">Atendimento ágil</div>
-              </div>
-              <div class="hero-stat">
-                <div class="hero-stat-val">4.9★</div>
-                <div class="hero-stat-lbl">Avaliação Google</div>
-              </div>
-              <div class="hero-stat">
-                <div class="hero-stat-val">&lt;30'</div>
-                <div class="hero-stat-lbl">Tempo de chegada</div>
-              </div>
-            </div>
+            <p class="hero-card-label">O que atendemos</p>
+            <ul class="hero-services-list">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Guincho leve e pesado
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Plataforma (importados e automáticos)
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Pane seca e troca de pneu
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Carro na vala e acidente
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Transporte de máquinas até 2.000kg
+              </li>
+            </ul>
             <a href="https://wa.me/5511994631249?text=Ol%C3%A1!%20Preciso%20de%20guincho."
                class="btn btn-emergency hero-card-btn"
                target="_blank" rel="noopener noreferrer">
-              Solicitar Orçamento →
+              Falar no WhatsApp agora →
             </a>
           </div>
         </div>
@@ -706,6 +819,23 @@
   </div>
 </section>
 
+
+<!-- ============================================================
+     QUICK SERVICES STRIP
+     ============================================================ -->
+<div class="quick-services" aria-label="Serviços disponíveis">
+  <div class="quick-services-inner">
+    <span class="qs-label">Serviços</span>
+    <a href="#servicos" class="qs-pill">🚗 Guincho Leve</a>
+    <a href="#servicos" class="qs-pill">🚛 Guincho Pesado</a>
+    <a href="#servicos" class="qs-pill">🔧 Plataforma</a>
+    <a href="#servicos" class="qs-pill">⛽ Pane Seca</a>
+    <a href="#servicos" class="qs-pill">🔄 Troca de Pneu</a>
+    <a href="#servicos" class="qs-pill">🏗️ Bob Cat</a>
+    <a href="#servicos" class="qs-pill">🧹 Limpeza de Terrenos</a>
+    <a href="#servicos" class="qs-pill">🏢 Construção Civil</a>
+  </div>
+</div>
 
 <!-- ============================================================
      TRUST BAR
