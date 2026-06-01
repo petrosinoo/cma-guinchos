@@ -206,13 +206,24 @@
     .emergency-bar-wa:hover { opacity: .9; }
 
     /* ===========================
+       TICKER ANIMATIONS
+       =========================== */
+    @keyframes ticker-fast {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes ticker-slow {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ===========================
        QUICK SERVICES STRIP
        =========================== */
     .quick-services {
       background: var(--color-bg-white);
       border-bottom: 1px solid rgba(10,79,177,.07);
-      padding: .75rem 0; overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      padding: .75rem 0; overflow: hidden;
       scrollbar-width: none;
     }
     .quick-services::-webkit-scrollbar { display: none; }
@@ -628,9 +639,33 @@
       .emergency-bar-sep   { display: none; }
       .emergency-bar-inner { gap: .75rem; }
       .emergency-bar-phone { font-size: .95rem; }
-      .quick-services-inner { justify-content: flex-start; }
       .steps-layout { grid-template-columns: 1fr; }
       .steps-photo  { min-height: 240px; }
+
+      /* Ticker: quick services (rápido) */
+      .quick-services { padding: .75rem 0; }
+      .quick-services-inner {
+        justify-content: flex-start;
+        padding: 0;
+        animation: ticker-fast 16s linear infinite;
+      }
+      .quick-services-inner:hover { animation-play-state: paused; }
+      .qs-label { display: none; }
+
+      /* Ticker: trust bar (devagar) */
+      .trust-bar { overflow: hidden; padding: 0; }
+      .trust-items {
+        flex-wrap: nowrap;
+        width: max-content;
+        animation: ticker-slow 28s linear infinite;
+        padding: 1.25rem 0;
+      }
+      .trust-items:hover { animation-play-state: paused; }
+      .trust-item {
+        border-right: 1px solid rgba(255,255,255,.13) !important;
+        flex: none;
+        padding: .625rem 1.75rem;
+      }
       .section       { padding: 3.5rem 0; }
       .nav-links     { display: none; }
       .menu-toggle   { display: block; }
@@ -639,8 +674,6 @@
       .hero-actions  { justify-content: center; }
       .hero-trust    { justify-content: center; }
       .hero-visual   { display: none; }
-      .trust-item    { padding: .625rem 1.25rem; border-right: none; }
-      .trust-items   { justify-content: space-around; }
       .services-grid { grid-template-columns: 1fr; }
       .steps         { grid-template-columns: 1fr; }
       .steps::before { display: none; }
@@ -656,7 +689,6 @@
       .coverage-regions{ grid-template-columns: 1fr; }
       .hero-actions .btn { width: 100%; justify-content: center; }
       .cta-actions .btn  { width: 100%; justify-content: center; }
-      .trust-item { flex: 1 1 45%; }
     }
   </style>
 </head>
@@ -855,6 +887,15 @@
     <a href="#servicos" class="qs-pill">🏗️ Bob Cat</a>
     <a href="#servicos" class="qs-pill">🧹 Limpeza de Terrenos</a>
     <a href="#servicos" class="qs-pill">🏢 Construção Civil</a>
+    <!-- duplicado para loop infinito seamless -->
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🚗 Guincho Leve</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🚛 Guincho Pesado</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🔧 Plataforma</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">⛽ Pane Seca</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🔄 Troca de Pneu</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🏗️ Bob Cat</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🧹 Limpeza de Terrenos</a>
+    <a href="#servicos" class="qs-pill" aria-hidden="true">🏢 Construção Civil</a>
   </div>
 </div>
 
@@ -862,23 +903,37 @@
      TRUST BAR
      ============================================================ -->
 <div class="trust-bar" role="complementary" aria-label="Indicadores de confiança">
-  <div class="container">
-    <div class="trust-items">
-      <div class="trust-item">
-        <div><div class="trust-val">+5.000</div><div class="trust-lbl">Atendimentos</div></div>
-      </div>
-      <div class="trust-item">
-        <div><div class="trust-val">7 dias</div><div class="trust-lbl">Por semana</div></div>
-      </div>
-      <div class="trust-item">
-        <div><div class="trust-val">4.9 ★</div><div class="trust-lbl">Avaliação Google</div></div>
-      </div>
-      <div class="trust-item">
-        <div><div class="trust-val">Grande SP</div><div class="trust-lbl">Área de cobertura</div></div>
-      </div>
-      <div class="trust-item">
-        <div><div class="trust-val">&lt; 30 min</div><div class="trust-lbl">Tempo médio de chegada</div></div>
-      </div>
+  <div class="trust-items">
+    <div class="trust-item">
+      <div><div class="trust-val">+5.000</div><div class="trust-lbl">Atendimentos</div></div>
+    </div>
+    <div class="trust-item">
+      <div><div class="trust-val">7 dias</div><div class="trust-lbl">Por semana</div></div>
+    </div>
+    <div class="trust-item">
+      <div><div class="trust-val">4.9 ★</div><div class="trust-lbl">Avaliação Google</div></div>
+    </div>
+    <div class="trust-item">
+      <div><div class="trust-val">Grande SP</div><div class="trust-lbl">Área de cobertura</div></div>
+    </div>
+    <div class="trust-item">
+      <div><div class="trust-val">&lt; 30 min</div><div class="trust-lbl">Tempo médio de chegada</div></div>
+    </div>
+    <!-- duplicado para loop infinito seamless -->
+    <div class="trust-item" aria-hidden="true">
+      <div><div class="trust-val">+5.000</div><div class="trust-lbl">Atendimentos</div></div>
+    </div>
+    <div class="trust-item" aria-hidden="true">
+      <div><div class="trust-val">7 dias</div><div class="trust-lbl">Por semana</div></div>
+    </div>
+    <div class="trust-item" aria-hidden="true">
+      <div><div class="trust-val">4.9 ★</div><div class="trust-lbl">Avaliação Google</div></div>
+    </div>
+    <div class="trust-item" aria-hidden="true">
+      <div><div class="trust-val">Grande SP</div><div class="trust-lbl">Área de cobertura</div></div>
+    </div>
+    <div class="trust-item" aria-hidden="true">
+      <div><div class="trust-val">&lt; 30 min</div><div class="trust-lbl">Tempo médio de chegada</div></div>
     </div>
   </div>
 </div>
